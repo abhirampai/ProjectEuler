@@ -1,0 +1,32 @@
+=begin
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million
+=end
+
+def isPrime(number)
+  if(number <= 1)
+    return false
+  end
+  if(number <= 3)
+    return true
+  end
+  if(number%2 == 0 || number%3 == 0)
+    return false
+  end
+  iterator = 5
+  while iterator*iterator <= number do
+    if(number%iterator == 0 || number%(iterator+2) == 0)
+      return false
+    end
+    iterator += 6
+  end
+    return true
+end
+
+sum = 0
+(1..2000000).each do |number|
+  sum += number unless !isPrime(number)
+end
+
+puts sum
